@@ -1,7 +1,7 @@
 fos_elastica:
     serializer: ~
     clients:
-        default: { host: 'opensearch', port: '9200' }
+        default: { host: '%env(resolve:OPENSEARCH_HOST)%', port: '%env(resolve:OPENSEARCH_PORT)%' }
     indexes:
         card:
             persistence:

@@ -13,7 +13,7 @@ functions:
             - ${bref:layer.php-82}
         events:
             -   s3:
-                    bucket: dataoffice-code-challenge
+                    bucket: '%env(resolve:AWS_BUCKET_NAME)%'
                     event: s3:ObjectCreated:*
                     existing: true
     console:

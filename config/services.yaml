@@ -17,10 +17,10 @@ services:
     Aws\S3\S3Client:
         arguments:
             -   version: 'latest'
-                region: 'eu-central-1'
-                endpoint: 'http://minio:9000'
+                region: '%env(resolve:AWS_BUCKET_REGION)%'
+                endpoint: '%env(resolve:MINIO_URL)%'
                 use_path_style_endpoint: true
-                credentials: { key: 'root', secret: '1234Abcd' }
+                credentials: { key: '%env(resolve:MINIO_ACCESS_KEY)%', secret: '%env(resolve:MINIO_SECRET_KEY)%' }
     App\Core\Application\Service\Card\CardCollectionFinder:
         arguments:
             - '@fos_elastica.finder.card'
