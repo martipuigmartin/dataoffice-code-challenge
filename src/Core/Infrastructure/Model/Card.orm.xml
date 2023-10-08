@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="App\Core\Domain\Entity\Card" table="card"
+            repository-class="App\Core\Infrastructure\Repository\DoctrineCardRepository">
+        <id name="id" type="integer" column="id">
+            <generator/>
+        </id>
+        <field name="artist" column="artist" length="255" nullable="true"/>
+        <field name="artistIds" column="artist_ids" nullable="true" type="json"/>
+        <field name="asciiName" column="ascii_name" length="255" nullable="true"/>
+        <field name="attractionLights" column="attraction_lights" type="json" nullable="true"/>
+        <field name="availability" column="availability" type="json" nullable="true"/>
+        <field name="boosterTypes" column="booster_types" type="json" nullable="true"/>
+        <field name="borderColor" column="border_color" length="255" nullable="true"/>
+        <field name="cardParts" column="card_parts" type="json" nullable="true"/>
+        <field name="colorIdentity" column="color_identity" type="json" nullable="true"/>
+        <field name="colorIndicator" column="color_indicator" type="json" nullable="true"/>
+        <field name="colors" column="colors" type="json" nullable="true"/>
+        <field name="convertedManaCost" column="converted_mana_cost" type="float" nullable="true"/>
+        <field name="defense" column="defense" length="255" nullable="true"/>
+        <field name="duelDeck" column="duel_deck" length="255" nullable="true"/>
+        <field name="edhrecRank" column="edhrec_rank" type="integer" nullable="true"/>
+        <field name="edhrecSaltiness" column="edhrec_saltiness" type="integer" nullable="true"/>
+        <field name="faceConvertedManaCost" column="face_converted_mana_cost" type="float" nullable="true"/>
+        <field name="faceFlavorName" column="face_flavor_name" length="255" nullable="true"/>
+        <field name="faceManaValue" column="face_mana_value" type="integer" nullable="true"/>
+        <field name="faceName" column="face_name" length="255" nullable="true"/>
+        <field name="finishes" column="finishes" type="json" nullable="true"/>
+        <field name="flavorName" column="flavor_name" length="255" nullable="true"/>
+        <field name="flavorText" column="flavor_text" type="text" nullable="true"/>
+        <field name="foreignData" column="foreign_data" type="json" nullable="true"/>
+        <field name="frameEffects" column="frame_effects" type="json" nullable="true"/>
+        <field name="frameVersion" column="frame_version" length="255" nullable="true"/>
+        <field name="hand" column="hand" length="255" nullable="true"/>
+        <field name="hasAlternativeDeckLimit" column="has_alternative_deck_limit" type="boolean" nullable="true"/>
+        <field name="hasContentWarning" column="has_content_warning" type="boolean" nullable="true"/>
+        <field name="hasFoil" column="has_foil" type="boolean" nullable="true"/>
+        <field name="hasNonFoil" column="has_non_foil" type="boolean" nullable="true"/>
+        <field name="identifiers" column="identifiers" type="json" nullable="true"/>
+        <field name="isAlternative" column="is_alternative" type="boolean" nullable="true"/>
+        <field name="isFullArt" column="is_full_art" type="boolean" nullable="true"/>
+        <field name="isFunny" column="is_funny" type="boolean" nullable="true"/>
+        <field name="isOnlineOnly" column="is_online_only" type="boolean" nullable="true"/>
+        <field name="isOversized" column="is_oversized" type="boolean" nullable="true"/>
+        <field name="isPromo" column="is_promo" type="boolean" nullable="true"/>
+        <field name="isRebalanced" column="is_rebalanced" type="boolean" nullable="true"/>
+        <field name="isReprint" column="is_reprint" type="boolean" nullable="true"/>
+        <field name="isReserved" column="is_reserved" type="boolean" nullable="true"/>
+        <field name="isStarter" column="is_starter" type="boolean" nullable="true"/>
+        <field name="isStorySpotlight" column="is_story_spotlight" type="boolean" nullable="true"/>
+        <field name="isTextless" column="is_textless" type="boolean" nullable="true"/>
+        <field name="isTimeshifted" column="is_timeshifted" type="boolean" nullable="true"/>
+        <field name="keywords" column="keywords" type="json" nullable="true"/>
+        <field name="language" column="language" length="255" nullable="true"/>
+        <field name="layout" column="layout" length="255" nullable="true"/>
+        <field name="leadershipSkills" column="leadership_skills" type="json" nullable="true"/>
+        <field name="legalities" column="legalities" type="json" nullable="true"/>
+        <field name="life" column="life" length="255" nullable="true"/>
+        <field name="loyalty" column="loyalty" length="255" nullable="true"/>
+        <field name="manaCost" column="mana_cost" length="255" nullable="true"/>
+        <field name="manaValue" column="mana_value" type="integer" nullable="true"/>
+        <field name="name" column="name" length="255" nullable="true"/>
+        <field name="number" column="number" length="255" nullable="true"/>
+        <field name="originalPrintings" column="original_printings" type="json" nullable="true"/>
+        <field name="originalReleaseDate" column="original_release_date" length="255" nullable="true"/>
+        <field name="originalText" column="original_text" type="text" nullable="true"/>
+        <field name="originalType" column="original_type" length="255" nullable="true"/>
+        <field name="otherFaceIds" column="other_face_ids" type="json" nullable="true"/>
+        <field name="power" column="power" length="255" nullable="true"/>
+        <field name="printings" column="printings" type="json" nullable="true"/>
+        <field name="promoTypes" column="promo_types" type="json" nullable="true"/>
+        <field name="purchaseUrls" column="purchase_urls" type="json" nullable="true"/>
+        <field name="rarity" column="rarity" length="255" nullable="true"/>
+        <field name="relatedCards" column="related_cards" type="json" nullable="true"/>
+        <field name="rebalancedPrintings" column="rebalanced_printings" type="json" nullable="true"/>
+        <field name="rulings" column="rulings" type="json" nullable="true"/>
+        <field name="securityStamp" column="security_stamp" length="255" nullable="true"/>
+        <field name="setCode" column="set_code" length="255" nullable="true"/>
+        <field name="side" column="side" length="255" nullable="true"/>
+        <field name="sourceProducts" column="source_products" type="json" nullable="true"/>
+        <field name="subsets" column="subsets" type="json" nullable="true"/>
+        <field name="subtypes" column="subtypes" type="json" nullable="true"/>
+        <field name="supertypes" column="supertypes" type="json" nullable="true"/>
+        <field name="text" column="text" type="text" nullable="true"/>
+        <field name="toughness" column="toughness" length="255" nullable="true"/>
+        <field name="type" column="type" length="255" nullable="true"/>
+        <field name="types" column="types" type="json" nullable="true"/>
+        <field name="uuid" column="uuid" length="255"/>
+        <field name="variations" column="variations" type="json" nullable="true"/>
+        <field name="watermark" column="watermark" length="255" nullable="true"/>
+    </entity>
+</doctrine-mapping>

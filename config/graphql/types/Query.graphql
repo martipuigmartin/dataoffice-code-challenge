@@ -1,0 +1,4 @@
+type Query {
+    getCard(cardId: ID): Card
+    getCardCollection(filter: String!, page: Int!, limit: Int!): [Card!]!
+}

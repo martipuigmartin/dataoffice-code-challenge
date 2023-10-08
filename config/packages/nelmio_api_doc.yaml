@@ -1,0 +1,9 @@
+nelmio_api_doc:
+    documentation:
+        info:
+            title: Data Office Code Challenge
+            description: OPEN API Documentation for Data Office Code Challenge
+            version: 1.0.0
+    areas:
+        path_patterns:
+            - ^/api(?!/doc$)

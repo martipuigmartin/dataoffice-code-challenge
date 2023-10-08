@@ -1,0 +1,13 @@
+fos_elastica:
+    serializer: ~
+    clients:
+        default: { host: 'opensearch', port: '9200' }
+    indexes:
+        card:
+            persistence:
+                driver: orm
+                model: App\Core\Domain\Entity\Card
+                provider: ~
+                finder: ~
+                listener: ~
+            index_name: card_%kernel.environment%

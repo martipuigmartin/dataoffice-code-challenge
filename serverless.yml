@@ -1,0 +1,24 @@
+service: app
+provider:
+    name: aws
+    region: eu-central-1
+    runtime: provided.al2
+plugins:
+    - ./vendor/bref/bref
+functions:
+    CardFetcher:
+        handler: App\Core\Infrastructure\Lambda\CardFetcher
+        timeout: 600
+        layers:
+            - ${bref:layer.php-82}
+        events:
+            -   s3:
+                    bucket: dataoffice-code-challenge
+                    event: s3:ObjectCreated:*
+                    existing: true
+    console:
+        handler: bin/console
+        timeout: 120
+        layers:
+            - ${bref:layer.php-82}
+            - ${bref:layer.console}
