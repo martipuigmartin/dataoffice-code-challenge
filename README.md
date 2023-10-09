@@ -5,7 +5,6 @@
   <img src=".doc/challenges.png" alt="dataoffice code challenge" width="80" height="80">
 </p>
 
-
 <h1 align="center">
   <b>
     SEAT:CODE Data Office Challenge done by Martí Puig Martin
@@ -21,11 +20,12 @@ solution.
 I have also used:
 
 - [Docker](https://www.docker.com/) to run the application.
-- [MinIO](https://min.io/) as a S3 compatible storage.
+- [MinIO](https://min.io/) as an S3 compatible storage.
 - [OpenSearch](https://opensearch.org/) as a search engine.
 - [Bref](https://bref.sh/) to handle the AWS Lambdas.
 - [FrankenPHP](https://github.com/dunglas/frankenphp) an application server for PHP built on top of the Caddy web
   server.
+- [Git LFS](https://git-lfs.com/) to store the images in the repository.
 
 As well as other libraries that you can find in the composer.json file like:
 
@@ -41,6 +41,8 @@ And many more.
 You will need to have installed:
 
 - [Docker](https://www.docker.com/)
+- [Docker Compose](https://docs.docker.com/compose/)
+- [Git LFS](https://git-lfs.github.com/)
 
 ### Commands
 
@@ -63,9 +65,16 @@ To install the application you have to run the following commands:
     make up
     make card-fetch
 
+In order to be able to fetch the data via LFS ensure that you have installed Git LFS and run the following commands:
+
+    git lfs fetch
+    git lfs pull
+
+And that's it. You have the application running.
+
 ### Usage
 
-Once you have the docker containers running you can access the application in the following urls:
+Once you have the docker containers running, you can access the application in the following urls:
 
 - [http://localhost](https://localhost) to access the API documentation.
 - [http://localhost:9001](http://localhost:9001) to access the MinIO dashboard.
@@ -87,7 +96,7 @@ following layers:
         - **Entity**: The entity itself.
         - **Repository**: The repository interface.
     - **Application**: This part contains:
-        - **Model**: The DTO acting as message for the commands and queries.
+        - **Model**: The DTO acting as a message in the commands and queries.
         - **Service**: The DTO handler.
     - **Infrastructure**: This part contains:
         - **Controller**: Rest Endpoints controllers.
@@ -160,7 +169,7 @@ The Card entity is the main entity of the application. It has a lot of fields, b
 - **text**: The text of the card.
 - **uuid**: The uuid of the card.
 
-For the sake of simplicity in the put and in some responses the card only returns the id and text fields. The rest of
+For the sake of simplicity in the PUT and in some responses, the card only returns the id and text fields. The rest of
 the fields are not returned, but they are saved in the database and OpenSearch.
 
 #### CardFetcher
@@ -198,23 +207,20 @@ If we take the PUT api/card/{cardId} endpoint as an example, the use case would 
 
 I prefer to use traits instead of putting the getters in the entities because if we follow the DDD approach the entities
 should have the business logic. Using the trait makes very clear when we have
-an [Anemic Domain Model](https://en.wikipedia.org/wiki/Anemic_domain_model),
-because we can see that the entity has no logic, only getters and setters, making it easier to spot the problem.
+an [Anemic Domain Model](https://en.wikipedia.org/wiki/Anemic_domain_model), because we can see that the entity has no
+logic, only getters and setters, making it easier to spot the problem.
 
 #### Why having an abstract entity (AggregateRoot) instead of a simple entity?
 
 I prefer to have an abstract entity because it makes it easier to add common logic to all the entities. If I was needed
-to
-make Entities capable of dispatching events, I could add the logic in the abstract entity and all the entities would be
-able to dispatch events.
+to make Entities capable of dispatching events, I could add the logic in the abstract entity and all the entities would
+be able to dispatch events.
 
-#### Why don't using the ORM annotations in the entities?
+#### Why don't use the ORM annotations in the entities?
 
 When having a hexagonal architecture, the entities should be agnostic of the infrastructure. If we use the ORM
-annotations
-in the entities, we are coupling the entities to the ORM. If we want to change the ORM, we will have to change the
-entities
-too. That's why I prefer to use the ORM annotations in the mapping files.
+annotations in the entities, we are coupling the entities to the ORM. If we want to change the ORM, we will have to
+change the entities too. That's why I prefer to use the ORM annotations in the mapping files.
 
 #### What are the CardQuery and CardCommand?
 
@@ -224,7 +230,7 @@ controller and the resolver are only responsible for handling the params of the 
 and the response (for example serializing the response in the controller case). Also, we can reuse the same action for
 both Rest and GraphQL.
 
-#### Why the putCard action don't return the card, and instead calls the getCard action?
+#### Why the putCard action doesn't return the card, and instead calls the getCard action?
 
 The putCard action is a command. By definition, commands don't return anything. They only change the state of the
 application. That's why the putCard action does not return the card. Instead, it calls the getCard action to get the
