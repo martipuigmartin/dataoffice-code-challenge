@@ -59,16 +59,16 @@ The project comes with a Makefile to make it easier to run the application. You 
 
 ### Installation
 
+In order to be able to fetch the data via LFS ensure that you have installed Git LFS and run the following commands:
+
+    git lfs fetch
+    git lfs pull
+
 To install the application you have to run the following commands:
 
     make build
     make up
     make card-fetch
-
-In order to be able to fetch the data via LFS ensure that you have installed Git LFS and run the following commands:
-
-    git lfs fetch
-    git lfs pull
 
 And that's it. You have the application running.
 
